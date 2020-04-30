@@ -1,0 +1,32 @@
+{
+  "name": "devtron",
+  "version": "1.4.0",
+  "description": "Electron DevTools Extension",
+  "main": "main.js",
+  "type": "main.d.ts",
+  "scripts": {
+    "start": "webpack"
+  },
+  "license": "MIT",
+  "keywords": [
+    "Electron",
+    "Chrome",
+    "Chromium",
+    "devtools",
+    "developer tools"
+  ],
+  "devDependencies": {
+    "electron": "^8.2.4",
+    "html-webpack-plugin": "^4.2.1",
+    "ts-loader": "^7.0.2",
+    "typescript": "^3.8.3",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
+  },
+  "dependencies": {
+    "@types/chrome": "^0.0.106",
+    "accessibility-developer-tools": "^2.11.0",
+    "highlight.js": "^10.0.0",
+    "humanize-plus": "^1.8.1"
+  }
+}
