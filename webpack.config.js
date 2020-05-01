@@ -8,7 +8,7 @@ const config = {
   target: 'electron-main',
   entry: {
     devtron: './src/devtron.ts',
-    index: './src/index.ts',
+    index: './src/index.tsx',
   },
   module: {
     rules: [
@@ -16,6 +16,14 @@ const config = {
         test: /\.tsx?$/,
         use: 'ts-loader',
         exclude: /node_modules/,
+      },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.(svg|woff2?|ttf|eot)$/,
+        use: 'url-loader',
       },
     ],
   },

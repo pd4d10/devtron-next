@@ -1,1 +1,1 @@
-chrome.devtools.panels.create('Devtron', 'devtron.png', 'index.html')
+chrome.devtools.panels.create('Devtron', 'devtron.png', 'dist/index.html')
