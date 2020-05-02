@@ -11,7 +11,7 @@ export interface LintPayload {
 
 export interface LintMessage {
   type: 'lint'
-  response?: LintPayload
+  payload?: LintPayload
 }
 
 export type MessageContent = LintMessage

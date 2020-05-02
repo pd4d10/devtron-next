@@ -18,7 +18,7 @@ export const GlobalProvider: FC = ({ children }) => {
       switch (message.type) {
         case 'lint':
           console.log(message)
-          setLint(message.response)
+          setLint(message.payload)
           break
         default:
       }
