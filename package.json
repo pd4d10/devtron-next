@@ -2,8 +2,8 @@
   "name": "devtron",
   "version": "1.4.0",
   "description": "Electron DevTools Extension",
-  "main": "main.js",
-  "type": "main.d.ts",
+  "main": "dist/main.js",
+  "type": "dist/main.d.ts",
   "scripts": {
     "start": "webpack"
   },

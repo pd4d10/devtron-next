@@ -5,11 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const config = {
   watch: true,
   mode: 'development',
-  target: 'electron-main',
-  entry: {
-    devtron: './src/devtron.ts',
-    index: './src/index.tsx',
-  },
+  devtool: 'source-map',
   module: {
     rules: [
       {
@@ -30,6 +26,29 @@ const config = {
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
   },
+}
+
+/** @type {import('webpack').Configuration} */
+const mainConfig = {
+  ...config,
+  target: 'electron-main',
+  entry: {
+    main: './src/main.ts',
+  },
+  output: {
+    filename: '[name].js',
+    libraryTarget: 'commonjs',
+    path: path.resolve(__dirname, 'dist'),
+  },
+}
+
+/** @type {import('webpack').Configuration} */
+const pageConfig = {
+  ...config,
+  entry: {
+    devtron: './src/devtron.ts',
+    index: './src/index.tsx',
+  },
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
@@ -48,4 +67,4 @@ const config = {
   ],
 }
 
-module.exports = config
+module.exports = [mainConfig, pageConfig]
