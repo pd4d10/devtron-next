@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const config = {
   watch: true,
   mode: 'development',
-  devtool: 'source-map',
+  // devtool: 'source-map',
   module: {
     rules: [
       {
@@ -40,6 +40,9 @@ const mainConfig = {
     libraryTarget: 'commonjs',
     path: path.resolve(__dirname, 'dist'),
   },
+  node: {
+    __dirname: false,
+  },
 }
 
 /** @type {import('webpack').Configuration} */
@@ -48,6 +51,8 @@ const pageConfig = {
   entry: {
     devtron: './src/devtron.ts',
     index: './src/index.tsx',
+    background: './src/background.ts',
+    'content-script': './src/content-script.ts',
   },
   output: {
     filename: '[name].js',

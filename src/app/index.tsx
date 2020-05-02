@@ -6,6 +6,7 @@ import { IpcView } from './ipc'
 import { LintView } from './lint'
 import { AccessibilityView } from './accessibility'
 import { AboutView } from './about'
+import { GlobalProvider } from './context'
 
 const tabs = [
   {
@@ -45,30 +46,34 @@ export const App: FC = () => {
   const CurrentComponent = tabs[active].component
 
   return (
-    <div className="window">
-      <div className="window-content">
-        <div className="pane-group">
-          <div className="pane pane-sm sidebar">
-            <ul className="list-group">
-              {tabs.map((tab, i) => (
-                <li
-                  className={cx('list-group-item', { active: i === active })}
-                  key={tab.name}
-                  onClick={() => {
-                    setActive(i)
-                  }}
-                >
-                  <div
-                    className={cx('sidebar-icon', `sidebar-icon-${tab.id}`)}
-                  />
-                  {tab.name}
-                </li>
-              ))}
-            </ul>
+    <GlobalProvider>
+      <div className="window">
+        <div className="window-content">
+          <div className="pane-group">
+            <div className="pane pane-sm sidebar">
+              <ul className="list-group">
+                {tabs.map((tab, i) => (
+                  <li
+                    className={cx('list-group-item', { active: i === active })}
+                    key={tab.name}
+                    onClick={() => {
+                      setActive(i)
+                    }}
+                  >
+                    <div
+                      className={cx('sidebar-icon', `sidebar-icon-${tab.id}`)}
+                    />
+                    {tab.name}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="pane">
+              <CurrentComponent />
+            </div>
           </div>
-          <CurrentComponent />
         </div>
       </div>
-    </div>
+    </GlobalProvider>
   )
 }
