@@ -1,7 +1,8 @@
 import React, { FC } from 'react'
+import { ControlGroup } from '@blueprintjs/core'
 
 export const Header: FC = ({ children }) => (
-  <header className="toolbar toolbar-header">
-    <div className="toolbar-actions">{children}</div>
-  </header>
+  <div style={{ padding: 10 }}>
+    <ControlGroup>{children}</ControlGroup>
+  </div>
 )

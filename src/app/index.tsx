@@ -1,5 +1,4 @@
 import React, { FC, useState } from 'react'
-import cx from 'classnames'
 import { Menu, MenuItem, Divider, IconName } from '@blueprintjs/core'
 import { RequireGraphView } from './require-graph'
 import { EventListenersView } from './event-listeners'
@@ -63,7 +62,11 @@ export const App: FC = () => {
           ))}
         </Menu>
         <Divider />
-        <CurrentComponent />
+        <div
+          style={{ display: 'flex', flexDirection: 'column', overflow: 'auto' }}
+        >
+          <CurrentComponent />
+        </div>
       </div>
     </GlobalProvider>
   )

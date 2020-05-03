@@ -17,13 +17,13 @@
   ],
   "devDependencies": {
     "@blueprintjs/core": "^3.26.0",
-    "@types/classnames": "^2.2.10",
+    "@types/node-fetch": "^2.5.7",
     "@types/react": "^16.9.34",
     "@types/react-dom": "^16.9.7",
-    "classnames": "^2.2.6",
     "css-loader": "^3.5.3",
     "electron": "^8.2.4",
     "html-webpack-plugin": "^4.2.1",
+    "node-fetch": "^2.6.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "style-loader": "^1.2.1",
@@ -35,10 +35,7 @@
   },
   "dependencies": {
     "@types/chrome": "^0.0.106",
-    "@types/node-fetch": "^2.5.7",
     "accessibility-developer-tools": "^2.11.0",
-    "highlight.js": "^10.0.0",
-    "humanize-plus": "^1.8.1",
-    "node-fetch": "^2.6.0"
+    "humanize-plus": "^1.8.1"
   }
 }
