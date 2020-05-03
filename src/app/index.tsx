@@ -1,5 +1,6 @@
 import React, { FC, useState } from 'react'
 import cx from 'classnames'
+import { Menu, MenuItem, Divider, IconName } from '@blueprintjs/core'
 import { RequireGraphView } from './require-graph'
 import { EventListenersView } from './event-listeners'
 import { IpcView } from './ipc'
@@ -8,34 +9,34 @@ import { AccessibilityView } from './accessibility'
 import { AboutView } from './about'
 import { GlobalProvider } from './context'
 
-const tabs = [
+const tabs: { icon: IconName; name: string; component: FC }[] = [
   {
-    id: 'graph',
+    icon: 'graph',
     name: 'Require Graph',
     component: RequireGraphView,
   },
   {
-    id: 'events',
+    icon: 'timeline-events',
     name: 'Event Listeners',
     component: EventListenersView,
   },
   {
-    id: 'ipc',
+    icon: 'mobile-phone',
     name: 'IPC',
     component: IpcView,
   },
   {
-    id: 'lint',
+    icon: 'function',
     name: 'Lint',
     component: LintView,
   },
   {
-    id: 'accessibility',
+    icon: 'globe',
     name: 'Accessibility',
     component: AccessibilityView,
   },
   {
-    id: 'about',
+    icon: 'info-sign',
     name: 'About',
     component: AboutView,
   },
@@ -47,32 +48,22 @@ export const App: FC = () => {
 
   return (
     <GlobalProvider>
-      <div className="window">
-        <div className="window-content">
-          <div className="pane-group">
-            <div className="pane pane-sm sidebar">
-              <ul className="list-group">
-                {tabs.map((tab, i) => (
-                  <li
-                    className={cx('list-group-item', { active: i === active })}
-                    key={tab.name}
-                    onClick={() => {
-                      setActive(i)
-                    }}
-                  >
-                    <div
-                      className={cx('sidebar-icon', `sidebar-icon-${tab.id}`)}
-                    />
-                    {tab.name}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="pane">
-              <CurrentComponent />
-            </div>
-          </div>
-        </div>
+      <div style={{ display: 'flex', height: '100vh' }}>
+        <Menu>
+          {tabs.map((tab, i) => (
+            <MenuItem
+              icon={tab.icon}
+              text={tab.name}
+              key={i}
+              active={i === active}
+              onClick={() => {
+                setActive(i)
+              }}
+            />
+          ))}
+        </Menu>
+        <Divider />
+        <CurrentComponent />
       </div>
     </GlobalProvider>
   )

@@ -16,6 +16,7 @@
     "developer tools"
   ],
   "devDependencies": {
+    "@blueprintjs/core": "^3.26.0",
     "@types/classnames": "^2.2.10",
     "@types/react": "^16.9.34",
     "@types/react-dom": "^16.9.7",
@@ -23,7 +24,6 @@
     "css-loader": "^3.5.3",
     "electron": "^8.2.4",
     "html-webpack-plugin": "^4.2.1",
-    "photon": "https://github.com/connors/photon.git",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "style-loader": "^1.2.1",
