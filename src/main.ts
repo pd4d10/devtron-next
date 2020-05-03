@@ -1,7 +1,12 @@
 import path from 'path'
-import { ipcMain, BrowserWindow } from 'electron'
+import { ipcMain, BrowserWindow, app } from 'electron'
 import fetch from 'node-fetch'
-import { DEVTRON_CHANNEL, MessageContent, LintPayload } from './constants'
+import {
+  DEVTRON_CHANNEL,
+  MessageContent,
+  LintPayload,
+  EventListenersMessage,
+} from './constants'
 
 const extdir = path.resolve(__dirname, '..')
 
@@ -31,15 +36,32 @@ async function handleMessage(e: any, message: MessageContent) {
       }
       return res
     }
+    case 'event-listeners': {
+      console.log(ipcMain.eventNames())
+      const res: EventListenersMessage['payload'] = {
+        app: app
+          .eventNames()
+          .reduce<Record<string, string[]>>((record, name) => {
+            record[name.toString()] = app
+              .listeners(name)
+              .map((f) => f.toString())
+            return record
+          }, {}),
+        // ipcMain: ipcMain.eventNames(),
+      }
+      return res
+    }
+    default:
   }
 }
 
 export function install() {
+  BrowserWindow.removeDevToolsExtension('devtron')
+  ipcMain.removeHandler(DEVTRON_CHANNEL)
+
   console.log(`Installing Devtron from ${extdir}`)
   ipcMain.handle(DEVTRON_CHANNEL, handleMessage)
-  if (!BrowserWindow.getDevToolsExtensions().devtron) {
-    BrowserWindow.addDevToolsExtension(extdir)
-  }
+  BrowserWindow.addDevToolsExtension(extdir)
 }
 
 export function uninstall() {
