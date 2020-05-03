@@ -1,9 +1,9 @@
 import React, { FC, useContext } from 'react'
 import { Button, HTMLTable, Callout } from '@blueprintjs/core'
-import { Light as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { Header } from './header'
 import { sendMessage } from './utils'
 import { GlobalContext } from './context'
+import { Highlighter } from './highlighter'
 
 export const LintView: FC = () => {
   const { lint } = useContext(GlobalContext)
@@ -74,9 +74,9 @@ export const LintView: FC = () => {
                     <br />
                     Listen for this event by adding the following to the{' '}
                     <code>webContents</code>:
-                    <SyntaxHighlighter language="js">
+                    <Highlighter>
                       {`myWindow.webContents.on('crashed', function () {})`}
-                    </SyntaxHighlighter>
+                    </Highlighter>
                   </>
                 ),
               },
@@ -97,9 +97,9 @@ export const LintView: FC = () => {
                     <br />
                     Listen for this event by adding the following to the{' '}
                     <code>BrowserWindow</code>:
-                    <SyntaxHighlighter language="js">
+                    <Highlighter>
                       {`myWindow.on('unresponsive', function () {})`}
-                    </SyntaxHighlighter>
+                    </Highlighter>
                   </>
                 ),
               },
@@ -122,9 +122,9 @@ export const LintView: FC = () => {
                     <br />
                     Listen for this event by adding the following to the main{' '}
                     <code>process</code>:
-                    <SyntaxHighlighter language="js">
+                    <Highlighter>
                       {`process.on('uncaughtException', function () {})`}
-                    </SyntaxHighlighter>
+                    </Highlighter>
                   </>
                 ),
               },

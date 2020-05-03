@@ -14,4 +14,11 @@ export interface LintMessage {
   payload?: LintPayload
 }
 
-export type MessageContent = LintMessage
+type EventListenersItem = Record<string, string[]>
+
+export interface EventListenersMessage {
+  type: 'event-listeners'
+  payload?: Record<string, EventListenersItem>
+}
+
+export type MessageContent = LintMessage | EventListenersMessage

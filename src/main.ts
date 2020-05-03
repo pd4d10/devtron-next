@@ -10,6 +10,13 @@ import {
 
 const extdir = path.resolve(__dirname, '..')
 
+function getEvents(ee: NodeJS.EventEmitter) {
+  return ee.eventNames().reduce<Record<string, string[]>>((record, name) => {
+    record[name.toString()] = ee.listeners(name).map((f) => f.toString())
+    return record
+  }, {})
+}
+
 async function handleMessage(e: any, message: MessageContent) {
   console.log('message', message)
   // TODO:
@@ -39,15 +46,9 @@ async function handleMessage(e: any, message: MessageContent) {
     case 'event-listeners': {
       console.log(ipcMain.eventNames())
       const res: EventListenersMessage['payload'] = {
-        app: app
-          .eventNames()
-          .reduce<Record<string, string[]>>((record, name) => {
-            record[name.toString()] = app
-              .listeners(name)
-              .map((f) => f.toString())
-            return record
-          }, {}),
-        // ipcMain: ipcMain.eventNames(),
+        process: getEvents(process),
+        app: getEvents(app),
+        ipcMain: getEvents(ipcMain),
       }
       return res
     }

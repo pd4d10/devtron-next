@@ -1,24 +1,32 @@
 import React, { createContext, FC, useEffect, useState } from 'react'
-import { MessageContent, LintPayload } from '../constants'
+import {
+  MessageContent,
+  LintPayload,
+  EventListenersMessage,
+} from '../constants'
 
 function noop() {}
 
 export const GlobalContext = createContext<{
   lint?: LintPayload
-  setLint: (v: LintPayload) => void
-}>({
-  setLint: noop,
-})
+  eventListeners?: EventListenersMessage['payload']
+}>({})
 
 export const GlobalProvider: FC = ({ children }) => {
   const [lint, setLint] = useState<LintPayload>()
+  const [eventListeners, setEventListeners] = useState<
+    EventListenersMessage['payload']
+  >()
 
   useEffect(() => {
     const listener = (message: MessageContent) => {
+      console.log('context', message)
       switch (message.type) {
         case 'lint':
-          console.log(message)
           setLint(message.payload)
+          break
+        case 'event-listeners':
+          setEventListeners(message.payload)
           break
         default:
       }
@@ -41,7 +49,7 @@ export const GlobalProvider: FC = ({ children }) => {
     <GlobalContext.Provider
       value={{
         lint,
-        setLint,
+        eventListeners,
       }}
     >
       {children}
