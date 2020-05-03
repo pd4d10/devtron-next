@@ -1,5 +1,5 @@
 import React, { FC, useContext } from 'react'
-import { Button, HTMLTable } from '@blueprintjs/core'
+import { Button, HTMLTable, Callout } from '@blueprintjs/core'
 import { Light as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { Header } from './header'
 import { sendMessage } from './utils'
@@ -23,11 +23,6 @@ export const LintView: FC = () => {
 
       {lint && (
         <HTMLTable>
-          <thead>
-            <tr>
-              <th>Lint Checks</th>
-            </tr>
-          </thead>
           <tbody>
             {[
               {
@@ -136,11 +131,12 @@ export const LintView: FC = () => {
             ].map(({ status, title, errorText }) => (
               <tr>
                 <td>
-                  <p>
-                    {status ? '✅' : '❗'}
-                    <strong>{title}</strong>
-                  </p>
-                  {status || <p>{errorText}</p>}
+                  <Callout
+                    title={title}
+                    intent={status ? 'success' : 'warning'}
+                  >
+                    {status || errorText}
+                  </Callout>
                 </td>
               </tr>
             ))}
