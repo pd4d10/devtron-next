@@ -1,5 +1,6 @@
 import React, { FC, useContext } from 'react'
 import { Button, HTMLTable } from '@blueprintjs/core'
+import { Light as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { Header } from './header'
 import { sendMessage } from './utils'
 import { GlobalContext } from './context'
@@ -78,14 +79,9 @@ export const LintView: FC = () => {
                     <br />
                     Listen for this event by adding the following to the{' '}
                     <code>webContents</code>:
-                    <pre className="lint-code ">
-                      <code
-                        className="language-javascript"
-                        data-field="crashedExample"
-                      >
-                        myWindow.webContents.on('crashed', function () {})
-                      </code>
-                    </pre>
+                    <SyntaxHighlighter language="js">
+                      {`myWindow.webContents.on('crashed', function () {})`}
+                    </SyntaxHighlighter>
                   </>
                 ),
               },
@@ -106,14 +102,9 @@ export const LintView: FC = () => {
                     <br />
                     Listen for this event by adding the following to the{' '}
                     <code>BrowserWindow</code>:
-                    <pre className="lint-code">
-                      <code
-                        className="language-javascript"
-                        data-field="unresponsiveExample"
-                      >
-                        myWindow.on('unresponsive', function () {})
-                      </code>
-                    </pre>
+                    <SyntaxHighlighter language="js">
+                      {`myWindow.on('unresponsive', function () {})`}
+                    </SyntaxHighlighter>
                   </>
                 ),
               },
@@ -136,14 +127,9 @@ export const LintView: FC = () => {
                     <br />
                     Listen for this event by adding the following to the main{' '}
                     <code>process</code>:
-                    <pre className="lint-code">
-                      <code
-                        className="language-javascript"
-                        data-field="uncaughtExample"
-                      >
-                        process.on('uncaughtException', function () {})
-                      </code>
-                    </pre>
+                    <SyntaxHighlighter language="js">
+                      {`process.on('uncaughtException', function () {})`}
+                    </SyntaxHighlighter>
                   </>
                 ),
               },
