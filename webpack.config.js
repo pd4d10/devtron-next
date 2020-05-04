@@ -1,5 +1,8 @@
 const path = require('path')
+const del = require('del')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+
+del.sync([path.resolve(__dirname, 'dist/**/*')])
 
 /** @type {import('webpack').Configuration} */
 const config = {

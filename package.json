@@ -6,7 +6,9 @@
   "type": "dist/main.d.ts",
   "scripts": {
     "start": "webpack",
-    "test": "npx prettier --list-different src/**/*.ts src/**/*.tsx"
+    "test": "npx prettier --list-different src/**/*.ts src/**/*.tsx",
+    "build": "webpack --config=webpack.config.prod.js",
+    "install": "npm run build"
   },
   "license": "MIT",
   "keywords": [
@@ -18,11 +20,13 @@
   ],
   "devDependencies": {
     "@blueprintjs/core": "^3.26.0",
+    "@types/chrome": "^0.0.106",
     "@types/node-fetch": "^2.5.7",
     "@types/react": "^16.9.34",
     "@types/react-dom": "^16.9.7",
     "@types/react-syntax-highlighter": "^11.0.4",
     "css-loader": "^3.5.3",
+    "del": "^5.1.0",
     "electron": "^8.2.4",
     "html-webpack-plugin": "^4.2.1",
     "node-fetch": "^2.6.0",
@@ -37,8 +41,10 @@
     "webpack-cli": "^3.3.11"
   },
   "dependencies": {
-    "@types/chrome": "^0.0.106",
     "accessibility-developer-tools": "^2.11.0",
     "humanize-plus": "^1.8.1"
+  },
+  "resolutions": {
+    "@types/node": "^12"
   }
 }
