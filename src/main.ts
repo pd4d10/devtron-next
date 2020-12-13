@@ -56,17 +56,26 @@ async function handleMessage(e: any, message: MessageContent) {
   }
 }
 
-export function install() {
-  BrowserWindow.removeDevToolsExtension('devtron')
-  ipcMain.removeHandler(DEVTRON_CHANNEL)
+async function onWebContentsCreated(
+  e: Electron.Event,
+  webContents: Electron.webContents
+) {
+  await webContents.session.loadExtension(extdir)
+}
 
+export function install() {
   console.log(`Installing Devtron from ${extdir}`)
+
+  ipcMain.removeHandler(DEVTRON_CHANNEL)
   ipcMain.handle(DEVTRON_CHANNEL, handleMessage)
-  BrowserWindow.addDevToolsExtension(extdir)
+
+  app.on('web-contents-created', onWebContentsCreated)
 }
 
 export function uninstall() {
   console.log(`Uninstalling Devtron from ${extdir}`)
+
   ipcMain.removeHandler(DEVTRON_CHANNEL)
-  return BrowserWindow.removeDevToolsExtension('devtron')
+
+  app.removeListener('web-contents-created', onWebContentsCreated)
 }
