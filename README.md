@@ -1,5 +1,7 @@
 # devtron [WIP]
 
+> Deprecated, see https://github.com/electron-userland/devtron/pull/221
+
 An attempt to refactor [devtron](https://github.com/electron-userland/devtron) with modern tech stack (TypeScript + React + Webpack). See https://github.com/electron-userland/devtron/issues/111.
 
 ## Roadmap
