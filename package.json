@@ -3,7 +3,7 @@
   "version": "1.4.0",
   "description": "Electron DevTools Extension",
   "main": "dist/main.js",
-  "type": "dist/main.d.ts",
+  "types": "dist/main.d.ts",
   "scripts": {
     "start": "webpack",
     "test": "npx prettier --list-different src/**/*.ts src/**/*.tsx",
